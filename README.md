@@ -4,7 +4,7 @@ Trois bannières de 600 × 200 px en JPEG, de 23 à 28 Ko chacune.
 
 ```
 signatures_mail/
-├── signatures.html   ← à ouvrir dans un navigateur : aperçu + boutons « Copier »
+├── index.html   ← à ouvrir dans un navigateur : aperçu + boutons « Copier »
 ├── README.md
 └── images/
     ├── signature-1-foret.jpg
@@ -13,14 +13,14 @@ signatures_mail/
 ```
 
 ## Où sont les images
-Elles sont hébergées publiquement sur GitHub (https://github.com/guilhemkaus-code/normal-planet-signatures), et `signatures.html` pointe déjà vers elles. Il n'y a rien à configurer.
+Elles sont hébergées publiquement sur GitHub (https://github.com/guilhemkaus-code/normal-planet-signatures), et `index.html` pointe déjà vers elles. Il n'y a rien à configurer.
 
 Pour changer une bannière plus tard, il suffit de remplacer le JPEG dans `images/` sous le même nom et de le pousser sur GitHub. Toutes les signatures se mettent à jour. GitHub peut garder l'ancienne version en cache quelques minutes.
 
 ---
 
 ## Pour chaque membre de l'équipe
-1. Ouvrir `signatures.html` dans **Chrome, Edge ou Firefox**.
+1. Ouvrir **https://guilhemkaus-code.github.io/normal-planet-signatures/** dans Chrome, Edge ou Firefox (ou `index.html` en local).
 2. Choisir une bannière, puis cliquer sur **Copier la signature**.
 3. Coller (Ctrl+V / Cmd+V) dans le champ signature de sa messagerie. Au besoin, ajouter au-dessus son nom et son téléphone en texte.
 
@@ -31,7 +31,7 @@ Pour changer une bannière plus tard, il suffit de remplacer le JPEG dans `image
 | **Outlook web / Outlook.com** | ⚙️ → Courrier → Composer et répondre → Signature → coller → Enregistrer |
 | **Outlook (Windows/Mac)** | Fichier → Options → Courrier → Signatures (Mac : Outlook → Réglages → Signatures) → Nouvelle → coller |
 | **Apple Mail (Mac)** | Mail → Réglages → Signatures → **+** → décocher « Toujours utiliser ma police par défaut » → coller |
-| **iPhone / iPad** | Réglages → Apps → Mail → Signature → coller (ouvrir `signatures.html` dans Safari, puis appui long sur la bannière → Copier) |
+| **iPhone / iPad** | Réglages → Apps → Mail → Signature → coller (ouvrir `index.html` dans Safari, puis appui long sur la bannière → Copier) |
 | **Infomaniak Mail** | ⚙️ → Signatures → Ajouter → coller dans l'éditeur |
 | **Thunderbird** | Paramètres des comptes → cocher « Utiliser HTML » → cliquer **Copier le code HTML** → coller dans la zone signature |
 | **Proton Mail** | Paramètres → Identité et adresses → Signature → coller |
