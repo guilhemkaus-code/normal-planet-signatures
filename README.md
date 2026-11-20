@@ -13,7 +13,7 @@ signatures_mail/
 ```
 
 ## Où sont les images
-Elles sont hébergées publiquement sur GitHub (https://github.com/wired99/normal-planet-signatures), et `signatures.html` pointe déjà vers elles. Il n'y a rien à configurer.
+Elles sont hébergées publiquement sur GitHub (https://github.com/guilhemkaus-code/normal-planet-signatures), et `signatures.html` pointe déjà vers elles. Il n'y a rien à configurer.
 
 Pour changer une bannière plus tard, il suffit de remplacer le JPEG dans `images/` sous le même nom et de le pousser sur GitHub. Toutes les signatures se mettent à jour. GitHub peut garder l'ancienne version en cache quelques minutes.
 
