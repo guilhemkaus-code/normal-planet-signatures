@@ -1,6 +1,6 @@
 # Signatures mail · Normal Planet (César 2027)
 
-Trois bannières, chacune en cinq largeurs (300, 400, 500, 740 et 1200 px, format 3:1) en JPEG, de 10 à 150 Ko. La version 740 px est la plus grande sous 50 Ko ; la 1200 px est la pleine taille, en haute qualité, sous 150 Ko. Le bouton « HD » utilise cette image 1200 px (< 150 Ko) pour toutes les largeurs : elle est affichée à la taille choisie, et reste nette sur les écrans haute résolution. Le bouton « Maximale » fait pareil avec une image 1200 px en qualité JPEG maximale (< 300 Ko).
+Trois bannières, chacune en quatre largeurs d'affichage (300, 400, 500 et 600 px). Chaque image a deux fois plus de pixels que sa largeur d'affichage (600 à 1200 px de large), pour rester nette sur les écrans haute résolution, en JPEG qualité 82 : de 23 Ko (300 px) à 83 Ko (600 px).
 
 ```
 signatures_mail/
