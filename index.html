@@ -6,38 +6,42 @@ body{font-family:system-ui,sans-serif;background:#f4f4f4;color:#222;max-width:70
 .carte{background:#fff;border-radius:8px;padding:16px;margin:16px 0}
 .sig img{max-width:100%;height:auto}
 button{padding:8px 14px;margin:8px 8px 0 0;cursor:pointer}
+.tailles button{margin-top:0}
+.tailles button.choisi{background:#222;color:#fff;border-color:#222}
 .ok{color:green;font-weight:bold}
-.alerte{background:#ffe9c7;padding:10px;border-radius:6px}
 </style></head><body>
 <h1>Signatures mail · Normal Planet</h1>
-<p>Clique sur <b>Copier la signature</b>, puis colle-la (Ctrl+V / Cmd+V) dans le champ signature de ta messagerie. Le mode d'emploi détaillé est dans <code>README.md</code>.</p>
-<p id="alerte" class="alerte" hidden>⚠️ Les liens des images ne sont pas renseignés.</p>
+<p>Choisis une taille, clique sur <b>Copier la signature</b>, puis colle-la (Ctrl+V / Cmd+V) dans le champ signature de ta messagerie. Le mode d'emploi détaillé est dans <code>README.md</code>.</p>
+<p class="tailles">Largeur : <button data-t="300">300 px</button><button data-t="400">400 px</button><button data-t="500">500 px</button></p>
 <div id="liste"></div>
 <script>
-/* ====== À REMPLIR UNE FOIS : liens publics des 3 images (GitHub) ====== */
+const BASE = "https://raw.githubusercontent.com/guilhemkaus-code/normal-planet-signatures/main/images/";
 const IMAGES = [
-  { nom: "1 · Forêt",   url: "https://raw.githubusercontent.com/guilhemkaus-code/normal-planet-signatures/main/images/signature-1-foret.jpg" },
-  { nom: "2 · Musée",   url: "https://raw.githubusercontent.com/guilhemkaus-code/normal-planet-signatures/main/images/signature-2-musee.jpg" },
-  { nom: "3 · Avatars", url: "https://raw.githubusercontent.com/guilhemkaus-code/normal-planet-signatures/main/images/signature-3-avatars.jpg" },
+  { nom: "1 · Forêt",   fichier: "signature-1-foret" },
+  { nom: "2 · Musée",   fichier: "signature-2-musee" },
+  { nom: "3 · Avatars", fichier: "signature-3-avatars" },
 ];
 const LIEN = ""; // facultatif : page vers laquelle renvoie un clic sur la signature (site, bande-annonce…)
-/* ========================================================================================== */
-const fichiersLocaux = ["images/signature-1-foret.jpg","images/signature-2-musee.jpg","images/signature-3-avatars.jpg"];
-const html = u => {
-  const img = `<img src="${u}" width="300" height="100" alt="Normal Planet — César 2027, Sélection officielle, court métrage documentaire" style="display:block;width:100%;max-width:300px;height:auto;border:0">`;
+let taille = 400;
+try { taille = +localStorage.getItem("taille") || 400; } catch(e) {}
+const url = (im, local) => (local ? "images/" : BASE) + `${im.fichier}-${taille}.jpg`;
+const html = (im, local) => {
+  const h = Math.round(taille / 3);
+  const img = `<img src="${url(im, local)}" width="${taille}" height="${h}" alt="Normal Planet — César 2027, Sélection officielle, court métrage documentaire" style="display:block;width:100%;max-width:${taille}px;height:auto;border:0">`;
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr><td>${LIEN ? `<a href="${LIEN}">${img}</a>` : img}</td></tr></table>`;
 };
-const pret = IMAGES.every(i => i.url.startsWith("http"));
-document.getElementById("alerte").hidden = pret;
-IMAGES.forEach((im, k) => {
-  const d = document.createElement("div"); d.className = "carte";
-  const code = html(im.url);
-  d.innerHTML = `<h2>${im.nom}</h2><div class="sig" id="s${k}">${pret ? code : html(fichiersLocaux[k])}</div>
-    <button data-k="${k}" class="c">Copier la signature</button><button data-k="${k}" class="h">Copier le code HTML</button><span id="m${k}"></span>`;
-  document.getElementById("liste").appendChild(d);
-});
+function afficher(){
+  document.querySelectorAll(".tailles button").forEach(b => b.classList.toggle("choisi", +b.dataset.t === taille));
+  const liste = document.getElementById("liste"); liste.innerHTML = "";
+  IMAGES.forEach((im, k) => {
+    const d = document.createElement("div"); d.className = "carte";
+    d.innerHTML = `<h2>${im.nom}</h2><div class="sig" id="s${k}">${html(im, true)}</div>
+      <button data-k="${k}" class="c">Copier la signature (${taille} px)</button><button data-k="${k}" class="h">Copier le code HTML</button><span id="m${k}"></span>`;
+    liste.appendChild(d);
+  });
+}
 async function copier(k, brut){
-  const code = html(IMAGES[k].url), m = document.getElementById("m"+k);
+  const code = html(IMAGES[k]), m = document.getElementById("m"+k);
   try{
     if(brut) await navigator.clipboard.writeText(code);
     else await navigator.clipboard.write([new ClipboardItem({"text/html":new Blob([code],{type:"text/html"}),"text/plain":new Blob([code],{type:"text/plain"})})]);
@@ -47,6 +51,10 @@ async function copier(k, brut){
   }
   m.textContent=" Copié ✓"; m.className="ok"; setTimeout(()=>m.textContent="",2000);
 }
-document.addEventListener("click", e => { if(e.target.dataset.k!==undefined) copier(+e.target.dataset.k, e.target.classList.contains("h")); });
+document.addEventListener("click", e => {
+  if(e.target.dataset.t){ taille = +e.target.dataset.t; try{ localStorage.setItem("taille", taille); }catch(_){} afficher(); }
+  else if(e.target.dataset.k!==undefined) copier(+e.target.dataset.k, e.target.classList.contains("h"));
+});
+afficher();
 </script>
 </body></html>
