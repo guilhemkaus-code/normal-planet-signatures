@@ -13,7 +13,7 @@ button{padding:8px 14px;margin:8px 8px 0 0;cursor:pointer}
 <h1>Signatures mail · Normal Planet</h1>
 <p>Choisis une taille, clique sur <b>Copier la signature</b>, puis colle-la (Ctrl+V / Cmd+V) dans le champ signature de ta messagerie. Le mode d'emploi détaillé est dans <code>README.md</code>.</p>
 <p class="tailles">Largeur : <button data-t="300">300 px</button><button data-t="400">400 px</button><button data-t="500">500 px</button><button data-t="740">740 px (&lt; 50 Ko)</button><button data-t="1200">1200 px</button></p>
-<p class="tailles">Qualité : <button data-q="leger">Légère</button><button data-q="hd">HD (&lt; 150 Ko)</button> <small>HD = image 1200 px affichée à la largeur choisie, plus nette sur les écrans haute résolution.</small></p>
+<p class="tailles">Qualité : <button data-q="leger">Légère</button><button data-q="hd">HD (&lt; 150 Ko)</button><button data-q="max">Maximale (&lt; 300 Ko)</button> <small>HD = image 1200 px affichée à la largeur choisie, plus nette sur les écrans haute résolution.</small></p>
 <div id="liste"></div>
 <script>
 const BASE = "https://guilhemkaus-code.github.io/normal-planet-signatures/images/";
@@ -25,7 +25,7 @@ const IMAGES = [
 const LIEN = ""; // facultatif : page vers laquelle renvoie un clic sur la signature (site, bande-annonce…)
 let taille = 400, qualite = "leger";
 try { taille = +localStorage.getItem("taille") || 400; qualite = localStorage.getItem("qualite") || "leger"; } catch(e) {}
-const url = (im, local) => (local ? "images/" : BASE) + `${im.fichier}-${qualite === "hd" ? 1200 : taille}.jpg`;
+const url = (im, local) => (local ? "images/" : BASE) + `${im.fichier}-${qualite === "hd" ? "1200" : qualite === "max" ? "1200-max" : taille}.jpg`;
 const html = (im, local) => {
   const h = Math.round(taille / 3);
   const img = `<img src="${url(im, local)}" width="${taille}" height="${h}" alt="Normal Planet — César 2027, Sélection officielle, court métrage documentaire" style="display:block;width:100%;max-width:${taille}px;height:auto;border:0">`;
@@ -37,7 +37,7 @@ function afficher(){
   IMAGES.forEach((im, k) => {
     const d = document.createElement("div"); d.className = "carte";
     d.innerHTML = `<h2>${im.nom}</h2><div class="sig" id="s${k}">${html(im, true)}</div>
-      <button data-k="${k}" class="c">Copier la signature (${taille} px${qualite === "hd" ? ", HD" : ""})</button><button data-k="${k}" class="h">Copier le code HTML</button><span id="m${k}"></span>`;
+      <button data-k="${k}" class="c">Copier la signature (${taille} px${qualite === "hd" ? ", HD" : qualite === "max" ? ", qualité max" : ""})</button><button data-k="${k}" class="h">Copier le code HTML</button><span id="m${k}"></span>`;
     liste.appendChild(d);
   });
 }
