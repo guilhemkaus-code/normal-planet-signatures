@@ -1,6 +1,6 @@
 # Signatures mail · Normal Planet (César 2027)
 
-Trois bannières, chacune en trois largeurs (300, 400, 500 et 740 px, format 3:1) en JPEG, de 10 à 49 Ko. La version 740 px est la plus grande qui reste sous 50 Ko.
+Trois bannières, chacune en cinq largeurs (300, 400, 500, 740 et 1200 px, format 3:1) en JPEG, de 10 à 150 Ko. La version 740 px est la plus grande sous 50 Ko ; la 1200 px est la pleine taille, en haute qualité, sous 150 Ko.
 
 ```
 signatures_mail/
