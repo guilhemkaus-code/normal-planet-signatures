@@ -1,6 +1,6 @@
 # Signatures mail · Normal Planet (César 2027)
 
-Trois bannières de 600 × 200 px en JPEG, de 23 à 28 Ko chacune.
+Trois bannières de 300 × 100 px en JPEG, de 11 à 13 Ko chacune.
 
 ```
 signatures_mail/

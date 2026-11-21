@@ -24,7 +24,7 @@ const LIEN = ""; // facultatif : page vers laquelle renvoie un clic sur la signa
 /* ========================================================================================== */
 const fichiersLocaux = ["images/signature-1-foret.jpg","images/signature-2-musee.jpg","images/signature-3-avatars.jpg"];
 const html = u => {
-  const img = `<img src="${u}" width="600" height="200" alt="Normal Planet — César 2027, Sélection officielle, court métrage documentaire" style="display:block;width:100%;max-width:600px;height:auto;border:0">`;
+  const img = `<img src="${u}" width="300" height="100" alt="Normal Planet — César 2027, Sélection officielle, court métrage documentaire" style="display:block;width:100%;max-width:300px;height:auto;border:0">`;
   return `<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse"><tr><td>${LIEN ? `<a href="${LIEN}">${img}</a>` : img}</td></tr></table>`;
 };
 const pret = IMAGES.every(i => i.url.startsWith("http"));
